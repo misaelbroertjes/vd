@@ -143,13 +143,18 @@ require_once('includes/header.php');
 				</div>
 			</form>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Nabezoeken voor dit adres</h1>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
 			<?php
 				// maak het object aan voor de lijst
 				$nieuwNabezoek = new vdNabezoek();
-				$nieuwNabezoek->showRowAll($conn, "datum", $nieuwAdres->adresID);
+				$nieuwNabezoek->showRowAll($conn, "datum", "", $nieuwAdres->adresID);
 				echo $nieuwAdres->adresID . "<br/>";
 			?>
 		</div>
