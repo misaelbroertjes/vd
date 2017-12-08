@@ -144,6 +144,9 @@ require_once('includes/header.php');
 			</form>
 		</div>
 	</div>
+	<?php
+		if($nieuwAdres->adresID != ""){
+	?>
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>Nabezoeken voor dit adres</h1>
@@ -158,6 +161,9 @@ require_once('includes/header.php');
 			?>
 		</div>
 	</div>
+	<?php
+		}
+	?>
 </div>
 
 <?php
