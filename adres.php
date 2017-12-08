@@ -155,7 +155,6 @@ require_once('includes/header.php');
 				// maak het object aan voor de lijst
 				$nieuwNabezoek = new vdNabezoek();
 				$nieuwNabezoek->showRowAll($conn, "datum", "", $nieuwAdres->adresID);
-				echo $nieuwAdres->adresID . "<br/>";
 			?>
 		</div>
 	</div>
