@@ -4,7 +4,7 @@
 			<div class="col-sm-12">
 				<ul class="nav nav-tabs">
   				<li class="nav-item">
-						<a class="nav-link <?php if($page == "home"){ echo "active"; }?>" href="/vd/" class="nav-link">Home</a>
+						<a class="nav-link <?php if($page == "home"){ echo "active"; }?>" href="<?php echo $root; ?>/" class="nav-link">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link disabled <?php if($page == "adres"){ echo "active"; }?>" href="" class="nav-link">Adres</a>
