@@ -92,24 +92,8 @@ class vdAdres{
   }
 
   public function showRowAll($conn, $orderBy = "", $desc = 0){
-    // maak th aan
-    echo '<table class="table table-striped table-hover">
-       <thead class="thead-dark">
-        <tr>
-          <th scope="col">Naam</th>
-          <th scope="col">Leeftijd</th>
-          <th scope="col">Geslacht</th>
-          <th scope="col">Straat</th>
-          <th scope="col">Nummer</th>
-          <th scope="col">Plaats</th>
-          <th scope="col">Extra informatie</th>
-          <th><a class="btn btn-success " href="adres.php" role="button"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nieuw</a></th>
-        </tr>
-      </thead>
-      <tbody>';
-
 
-      // haal alle adressen op voor een overzicht
+    // haal alle adressen op voor een overzicht
       // bouwen van sql querry
       $sql = "SELECT * FROM vdAdres";
 
@@ -126,27 +110,47 @@ class vdAdres{
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
-          // loop door de resultaten heen
-          while($row = $result->fetch_assoc()) {
-            // voor elk resultaat stoppen we de waarde in het object
-            $this->adresID = $row['adresID'];
-            $this->naam = $row['naam'];
-            $this->leeftijd = $row['leeftijd'];
-            $this->geslacht = $row['geslacht'];
-            $this->straat = $row['straat'];
-            $this->huisnummer = $row['huisnummer'];
-            $this->plaats = $row['plaats'];
-            $this->extra = $row['extra'];
+
+        // maak th aan
+        echo '<table class="table table-striped table-hover">
+           <thead class="thead-dark">
+            <tr>
+              <th scope="col">Naam</th>
+              <th scope="col">Leeftijd</th>
+              <th scope="col">Geslacht</th>
+              <th scope="col">Straat</th>
+              <th scope="col">Nummer</th>
+              <th scope="col">Plaats</th>
+              <th scope="col">Extra informatie</th>
+              <th><a class="btn btn-success " href="adres.php" role="button"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nieuw</a></th>
+            </tr>
+          </thead>
+          <tbody>';
+
+        // loop door de resultaten heen
+        while($row = $result->fetch_assoc()) {
+          // voor elk resultaat stoppen we de waarde in het object
+          $this->adresID = $row['adresID'];
+          $this->naam = $row['naam'];
+          $this->leeftijd = $row['leeftijd'];
+          $this->geslacht = $row['geslacht'];
+          $this->straat = $row['straat'];
+          $this->huisnummer = $row['huisnummer'];
+          $this->plaats = $row['plaats'];
+          $this->extra = $row['extra'];
 
-            // Maak een tabel van de gegevens
-            $this->showRow();
-          }
+          // Maak een tabel van de gegevens
+          $this->showRow();
+        }
+
+        // sluit table af
+        echo "</tbody></table>";
+
       } else {
           echo "0 results";
       }
 
-      // sluit table af
-      echo "</tbody></table>";
+
   }
 
   public function addToDB($conn){
@@ -262,21 +266,7 @@ class vdNabezoek{
   }
 
   public function showRowAll($conn, $orderBy = "", $desc = 0, $AdresID = ""){
-    // maak th aan
-    echo '<table class="table table-striped table-hover">
-       <thead class="thead-dark">
-        <tr>
-          <th scope="col">Datum</th>
-          <th scope="col">Tijd</th>
-          <th scope="col">Publicatie</th>
-          <th scope="col">Volgende keer</th>
-          <th scope="col">Thuis</th>
-          <th scope="col">Extra informatie</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>';
-
+    
       // haal alle adressen op voor een overzicht
       // bouwen van sql querry
       $sql = "SELECT * FROM vdNabezoek ";
@@ -300,6 +290,21 @@ class vdNabezoek{
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
+        // maak th aan
+        echo '<table class="table table-striped table-hover">
+           <thead class="thead-dark">
+            <tr>
+              <th scope="col">Datum</th>
+              <th scope="col">Tijd</th>
+              <th scope="col">Publicatie</th>
+              <th scope="col">Volgende keer</th>
+              <th scope="col">Thuis</th>
+              <th scope="col">Extra informatie</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>';
+
           // loop door de resultaten heen
           while($row = $result->fetch_assoc()) {
             // voor elk resultaat stoppen we de waarde in het object
@@ -315,12 +320,15 @@ class vdNabezoek{
             // Maak een tabel van de gegevens
             $this->showRow();
           }
+
+          // sluit table af
+          echo "</tbody></table>";
+
       } else {
-          echo "0 results";
+          echo "Geen nabezoeken gevonden voor dit adres.";
       }
 
-      // sluit table af
-      echo "</tbody></table>";
+
   }
 
   public function addToDB($conn){
