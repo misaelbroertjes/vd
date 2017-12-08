@@ -88,7 +88,7 @@ require_once('includes/header.php');
 			<?php
 			// maak het object aan voor de lijst
 			$nieuwNabezoek = new vdNabezoek();
-			$nieuwNabezoek->showRowAll($conn, "datum", "DESC");
+			$nieuwNabezoek->showRowAll($conn, "datum", 1);
 			?>
 		</div>
 	</div>

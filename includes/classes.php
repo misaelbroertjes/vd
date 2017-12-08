@@ -91,7 +91,7 @@ class vdAdres{
           </tr>";
   }
 
-  public function showRowAll($conn, $orderBy = "", $desc = ""){
+  public function showRowAll($conn, $orderBy = "", $desc = 0){
     // maak th aan
     echo '<table class="table table-striped table-hover">
        <thead class="thead-dark">
@@ -106,14 +106,23 @@ class vdAdres{
           <th><a class="btn btn-success " href="adres.php" role="button"><i class="fa fa-plus-circle" aria-hidden="true"></i> Nieuw</a></th>
         </tr>
       </thead>
-      <tbody>';
+      <tbody>';
+
 
       // haal alle adressen op voor een overzicht
-      if($orderBy != ""){
-        $sql = "SELECT * FROM vdAdres ORDER BY $orderBy $desc";
-      } else{
-        $sql = "SELECT * FROM vdAdres $desc";
-      }
+      // bouwen van sql querry
+      $sql = "SELECT * FROM vdAdres";
+
+      if($orderBy != ""){
+        $sql .= " ORDER BY $orderBy";
+      }
+
+      // als de volgorde moet worden omgedraaid
+      if($desc = 1){
+        $sql .= " DESC";
+      }
+
+      // voer de query uit
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -252,7 +261,7 @@ class vdNabezoek{
           </tr>";
   }
 
-  public function showRowAll($conn, $orderBy = "", $desc = ""){
+  public function showRowAll($conn, $orderBy = "", $desc = 0, $AdresID = ""){
     // maak th aan
     echo '<table class="table table-striped table-hover">
        <thead class="thead-dark">
@@ -269,12 +278,25 @@ class vdNabezoek{
       <tbody>';
 
       // haal alle adressen op voor een overzicht
-      if($orderBy != ""){
-        $sql = "SELECT * FROM vdNabezoek ORDER BY $orderBy $desc";
-      } else{
-        $sql = "SELECT * FROM vdNabezoek $desc";
-      }
-
+      // bouwen van sql querry
+      $sql = "SELECT * FROM vdNabezoek ";
+
+      // als er een gezocht word voor adressen bij specifiek adresID
+      if($AdresID != ""){
+        $sql .= " WHERE adresID=$AdresID";
+      }
+
+      // Als er een volgorde word meegegeven
+      if($orderBy != ""){
+        $sql .= " ORDER BY $orderBy";
+      }
+
+      // als de volgorde moet worden omgedraaid
+      if($desc = 1){
+        $sql .= " DESC";
+      }
+
+      // voor de query uit
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {

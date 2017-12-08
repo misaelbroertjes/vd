@@ -144,6 +144,16 @@ require_once('includes/header.php');
 			</form>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// maak het object aan voor de lijst
+				$nieuwNabezoek = new vdNabezoek();
+				$nieuwNabezoek->showRowAll($conn, "datum", $nieuwAdres->adresID);
+				echo $nieuwAdres->adresID . "<br/>";
+			?>
+		</div>
+	</div>
 </div>
 
 <?php
